@@ -1,0 +1,215 @@
+:root {
+  color-scheme: dark;
+  --bg: #0a0b12;
+  --surface: #11151f;
+  --surface-strong: #1a2130;
+  --text: #f3f4f8;
+  --muted: #95a1b8;
+  --accent: #7c62ff;
+  --accent-strong: #c1b8ff;
+  --danger: #ff5a7d;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: radial-gradient(circle at top left, rgba(124, 98, 255, 0.18), transparent 28%),
+    radial-gradient(circle at bottom right, rgba(255, 90, 125, 0.14), transparent 24%),
+    var(--bg);
+  color: var(--text);
+}
+
+.page-shell {
+  width: min(1200px, calc(100% - 2rem));
+  margin: 0 auto;
+  padding: 2rem 0 4rem;
+}
+
+.hero {
+  display: grid;
+  gap: 2rem;
+  align-items: center;
+  padding: 2rem;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  background: rgba(16, 20, 32, 0.85);
+  border-radius: 32px;
+  backdrop-filter: blur(12px);
+}
+
+.hero-copy h1 {
+  margin: 0 0 1rem;
+  font-size: clamp(2.4rem, 4vw, 4rem);
+  line-height: 1.02;
+}
+
+.hero-copy p {
+  margin: 0 0 1.75rem;
+  max-width: 42rem;
+  color: var(--muted);
+  font-size: 1.05rem;
+  line-height: 1.75;
+}
+
+.blast-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.8rem;
+  border: none;
+  border-radius: 999px;
+  padding: 1rem 1.6rem;
+  background: linear-gradient(135deg, var(--accent), var(--accent-strong));
+  color: #fff;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: transform 180ms ease, box-shadow 180ms ease;
+}
+
+.blast-button:hover,
+.blast-button:focus-visible {
+  transform: translateY(-1px);
+  box-shadow: 0 16px 40px rgba(124, 98, 255, 0.22);
+}
+
+.stats {
+  margin-top: 1rem;
+  display: inline-flex;
+  gap: 0.65rem;
+  color: var(--muted);
+  font-size: 0.98rem;
+}
+
+.hero-visual {
+  min-height: 260px;
+  display: grid;
+  place-items: center;
+}
+
+.ghost {
+  width: 180px;
+  height: 180px;
+  background: radial-gradient(circle at 50% 35%, #eef0ff, #b0b8ff 55%, transparent 72%);
+  border-radius: 50% 50% 45% 45% / 60% 60% 40% 40%;
+  position: relative;
+  box-shadow: inset 0 0 0 2px rgba(255, 255, 255, 0.04), 0 18px 42px rgba(0, 0, 0, 0.32);
+  animation: float 5s ease-in-out infinite;
+}
+
+.ghost::before,
+.ghost::after {
+  content: '';
+  position: absolute;
+  width: 24px;
+  height: 24px;
+  background: #1b213b;
+  border-radius: 50%;
+  top: 44px;
+}
+
+.ghost::before {
+  left: 44px;
+}
+
+.ghost::after {
+  right: 44px;
+}
+
+.field {
+  margin-top: 2rem;
+  min-height: 320px;
+  padding: 1rem;
+  border-radius: 24px;
+  background: linear-gradient(180deg, rgba(17, 22, 37, 0.99), rgba(10, 13, 18, 0.96));
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  position: relative;
+  overflow: hidden;
+}
+
+.ghost-card {
+  position: absolute;
+  width: var(--ghost-size, 120px);
+  height: var(--ghost-size, 120px);
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  cursor: pointer;
+  transition: transform 180ms ease, border-color 180ms ease, left 200ms ease, top 200ms ease, width 160ms ease, height 160ms ease;
+}
+
+.ghost-card:hover,
+.ghost-card:focus-visible {
+  transform: translateY(-6px);
+  border-color: rgba(124, 98, 255, 0.45);
+}
+
+.ghost-card::after {
+  content: 'BOO';
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  font-size: 2rem;
+  color: rgba(255, 255, 255, 0.08);
+  letter-spacing: 0.4em;
+}
+
+.ghost-card:focus-visible {
+  outline: 3px solid rgba(124, 98, 255, 0.48);
+  outline-offset: 4px;
+}
+
+/* Utility: visually-hidden for screen readers */
+.sr-only {
+  position: absolute !important;
+  height: 1px;
+  width: 1px;
+  overflow: hidden;
+  clip: rect(1px, 1px, 1px, 1px);
+  white-space: nowrap;
+}
+
+.ghost-card span {
+  position: relative;
+  z-index: 1;
+  color: var(--text);
+  font-weight: 600;
+}
+
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-18px);
+  }
+}
+
+@keyframes destroy {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(0.2);
+    opacity: 0;
+  }
+}
+
+.destroyed {
+  animation: destroy 240ms ease forwards;
+}
+
+@media (max-width: 720px) {
+  .hero {
+    padding: 1.5rem;
+  }
+  
+}

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>GhostFace Destroyer</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="page-shell" role="main">
+      <section class="hero">
+        <div class="hero-copy">
+          <h1>GhostFace Destroyer</h1>
+          <p>Enfrenta tus fantasmas, destrúyelos y aumenta tu puntuación en esta demo.</p>
+          <button id="blastButton" class="blast-button">Comenzar la caza</button>
+          <div class="stats">
+            <span>Fantasmas destruidos:</span>
+            <strong id="destroyedCount" role="status" aria-live="polite">0</strong>
+          </div>
+        </div>
+        <div class="hero-visual" aria-hidden="true">
+          <div class="ghost"></div>
+        </div>
+      </section>
+
+      <section class="game-area">
+        <h2>Campo de juego</h2>
+        <p>Haz clic en los fantasmas cuando aparezcan para destruirlos. Cada acierto aumenta tu puntuación. También puedes enfocar un fantasma y presionar Enter o Espacio para destruirlo.</p>
+        <div id="field" class="field" aria-label="Game field" tabindex="0"></div>
+      </section>
+    </main>
+
+    <script src="script.js"></script>
+  </body>
+</html>
